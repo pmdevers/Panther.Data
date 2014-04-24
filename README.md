@@ -8,7 +8,7 @@ A Repository Pattern for PetaPoco
 Setting up the PetaPoco Repository for a WebApplication is quite easy. 
 Just place the following lines in your Global.asax
 
-	protected void Application_Start()
+	public override void Init()
 	{
 		var connectionString = "Default";
 
