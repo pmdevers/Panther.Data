@@ -8,8 +8,6 @@ A Repository Pattern for PetaPoco
 Setting up the PetaPoco Repository for a WebApplication is quite easy. 
 Just place the following lines in your Global.asax
 
-...cs
-
 	protected void Application_Start()
 	{
 		var connectionString = "Default";
@@ -20,13 +18,9 @@ Just place the following lines in your Global.asax
 		DbContextManager.InitStorage(new WebDbContextStorage(this));
 	}
 
-...
-
 ##2 Creating a PetaPoco Entity
 
 To use PetaPoco we need to create a POCO class see below an example class.
-
-...cs
 
 	[TableName("Pages")]
 	[PrimaryKey("Id")]
@@ -44,25 +38,17 @@ To use PetaPoco we need to create a POCO class see below an example class.
 		public int VersionNumber { get; set; }
 	}
 
-...
-
 ##3 Creating a repository
 
 For creating a repository we need 2 things an Interface describing the repository and a Class for the repository it self.
 Here is an example repository for a Pages Table
-
-...cs
 
 	public interface IPageRepository : IRepository<Page>
 	{
 		Page GetPageByUrl(string url);
 	}
 
-...
-
 Now we can create the repository that we can use in our code.
-
-...cs
 
 	public class PageRepository : GenericRepository<Page>, IPageRepository
 	{
@@ -72,13 +58,9 @@ Now we can create the repository that we can use in our code.
 		}
 	}
 
-...
-
 ##4 Using the repository
 
 To use the repository you can simply do the following.
-
-...cs
 
 	public void UseRepository()
 	{
@@ -87,9 +69,6 @@ To use the repository you can simply do the following.
 		//Get the page by the url provided;
 		var page = repository.GetPageByUrl("home");
 	}
-
-...
-
 
 That is all what is needed to setup the repository.
 
