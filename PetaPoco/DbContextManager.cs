@@ -54,8 +54,15 @@ namespace Panther.Data.PetaPoco
 
             lock (SyncLock)
             {
-                DbContextBuilders.Add(connectionStringName,
-                    new DbContextBuilder<IDbContext>(connectionStringName));
+                if (DbContextBuilders.ContainsKey(connectionStringName))
+                {
+                    DbContextBuilders[connectionStringName] = new DbContextBuilder<IDbContext>(connectionStringName);
+                }
+                else
+                {
+                    DbContextBuilders.Add(connectionStringName,
+                        new DbContextBuilder<IDbContext>(connectionStringName));
+                }
             }
         }
 
